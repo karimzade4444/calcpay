@@ -79,7 +79,7 @@ body {
 .result{
 position: absolute;
 right: 80px;
-top: 650px;
+top: 750px;
 width: 150px;
 height: 40px;
 border-radius: 15px;
@@ -95,7 +95,7 @@ font-size: 16px;
 #payhours{
     position: absolute;
     left: 40px;
-    top: 620px;
+    top: 720px;
     width: 350px;
     height: 50px;
     border-radius: 15px;
@@ -146,7 +146,7 @@ font-size: 16px;
 .hint{
     position: absolute;
     left: 420px;
-    top: 615px;
+    top: 715px;
     width: 200px;
     color: white;
     background-color: black;
