@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+/* анимированный фон */
+.box {
+  position: fixed;
+  inset: -50%;
+  background: conic-gradient(
+    rgba(255, 0, 0, 0.425),
+    rgba(255, 166, 0, 0.445),
+    rgba(255, 255, 0, 0.427),
+    rgba(0, 255, 0, 0.432),
+    rgba(0, 255, 255, 0.408),
+    rgba(0, 0, 255, 0.412),
+    rgba(255, 0, 255, 0.422),
+    rgba(255, 0, 0, 0.437)
+  );
+  animation: move 10s linear infinite;
+  filter: blur(120px);
+  opacity: 0.8;
+}
+
+/* движение */
+@keyframes move {
+  from {
+    transform: rotate(0deg) scale(1.2);
+  }
+  to {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
