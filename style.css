@@ -95,7 +95,7 @@ font-size: 16px;
 #payhours{
     position: absolute;
     left: 40px;
-    bottom: 30px;
+    bottom: 50px;
     width: 350px;
     height: 50px;
     border-radius: 15px;
@@ -146,7 +146,7 @@ font-size: 16px;
 .hint{
     position: absolute;
     left: 420px;
-    bottom: 25px;
+    bottom: 45px;
     width: 200px;
     color: white;
     background-color: black;
