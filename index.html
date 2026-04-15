@@ -1,24 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAY</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-   <div class="box">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="topLeft"><h1>Калькулятор расчёта Зарплаты</h1></div>
+    <div class="inp">
+      <input type="text" name="" id="okl" placeholder="Введите оклад /смн" />
+      <input type="text" name="" id="prem" placeholder="Введите премию /смн" />
+      <input
+        type="text"
+        name=""
+        id="payday"
+        placeholder="Введите количество от.часов(дневные) /часов"
+      />
+      <input
+        type="text"
+        name=""
+        id="paynight"
+        placeholder="Введите количество от.часов(ночные) /часов"
+      />
+      <input
+        type="text"
+        name=""
+        id="payceleb"
+        placeholder="Введите количество от.часов(праздничные) /часов"
+      />
+    </div>
+    <input
+      type="text"
+      name=""
+      id="payhours"
+      placeholder="Введите стандартный рабочий час в месяц"
+    />
+    <button class="result">Расчитать</button>
+<div class="resultblock">
+<div class="rbtext">
+    <p>Зачисление на 15 числа</p>
+    <input type="text" name="" id="">
+    <p>Зачисление на 1 числа</p>
+    <input type="text" name="" id="">
+    <p>Общее Зачисление(с НДС)</p>
+    <input type="text" name="" id="">
+    <p>Общее Зачисление(без НДС)</p>
+    <input type="text" name="" id="">
+    <p>НДС</p>
+    <input type="text" name="" id="">
 </div>
-<div class="topLeft"><h1>Калькулятор расчёта Зарплаты</h1></div>
-<div class="inp">
-    <input type="text" name="" id="okl" placeholder="Введите оклад">
-    <input type="text" name="" id="prem" placeholder="Введите премию">
-    <input type="text" name="" id="payday" placeholder="Введите количество от.часов(дневные)">
-    <input type="text" name="" id="paynight" placeholder="Введите количество от.часов(ночные)">
-    <input type="text" name="" id="payceleb" placeholder="Введите количество от.часов(праздничные)">
 </div>
-  
+
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
