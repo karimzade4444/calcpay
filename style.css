@@ -164,15 +164,36 @@ body{
 }
 .topLeft{
  position: absolute;
- top: 50;
+ width: 90%;
+ height: 40px;
+ top: 20px;
  bottom: 0;
  right: 0;
- left: 80px;
+ left: 0;
+ font-size: 8px;
 }
 .inp{
+   width: 90%;
    left: 0;
 }
-
+.inp input{
+width: 90%;
+height: 30px;
+}
+#payhours{
+    width: 80%;
+    height: 30px;
+    left: 0;
+    top: 520px;
+}
+.hint{
+    top: 450px;
+    left: 0;
+}
+.result{
+    bottom: 0px;
+    right: 0px;
+}
 
 
 
