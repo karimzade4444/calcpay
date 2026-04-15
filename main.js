@@ -35,7 +35,7 @@ let taxtwo = resall*0.02;
 let taxtwelve = ((resall-taxtwo)-156)*0.12;
 let resultpay =resall-taxtwo-taxtwelve;
 let rpwopp = resultpay-paypart
-let restax = resall-resultpay
+let restax = (resall-resultpay)+(prem-premtax)
 let res = resall
 
 
