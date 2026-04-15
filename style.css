@@ -143,6 +143,17 @@ font-size: 16px;
         font-weight: bolder;
 }
 
+.hint{
+    position: absolute;
+    left: 420px;
+    bottom: 25px;
+    width: 200px;
+    color: white;
+    background-color: black;
+    padding-left:20px ;
+    border-radius: 10px;
+}
+
 
 
 
