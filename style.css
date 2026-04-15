@@ -3,6 +3,7 @@ body {
   height: 100vh;
   overflow: hidden;
   background: black;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* анимированный фон */
@@ -35,7 +36,7 @@ body {
 }
 
 .topLeft{
-    width: 500px;
+    width: 600px;
     height: 50px;
     background-color: rgba(128, 128, 128, 0.473);
    position: absolute;
