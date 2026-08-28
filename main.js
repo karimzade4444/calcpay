@@ -1,49 +1,169 @@
 window.onload = () => {
-  let result = document.querySelector(".result");
+  const button = document.querySelector(".result");
 
-  result.onclick = () => {
+  const get = (id) => {
+    return document.getElementById(id);
+  };
 
-    let okl = Number(document.getElementById("okl").value);
-    let prem = Number(document.getElementById("prem").value);
-    let payday = Number(document.getElementById("payday").value);
-    let paynight = Number(document.getElementById("paynight").value);
-    let payceleb = Number(document.getElementById("payceleb").value);
-    let payhours = Number(document.getElementById("payhours").value);
+  // Форматирование денег
+  const formatMoney = (value) => {
+    return Number(value).toLocaleString("ru-RU", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
 
-    let partpay = document.getElementById("partpay");
-    let pay = document.getElementById("pay");
-    let fullpay = document.getElementById("fullpay");
-    let fullpaytax = document.getElementById("fullpaytax");
-    let tax = document.getElementById("tax");
+  // Анимация изменения числа
+  const animateValue = (element, finalValue) => {
+    const target = Number(finalValue);
 
-    // проверка В САМОМ НАЧАЛЕ
+    const duration = 600;
+
+    const start = performance.now();
+
+    const startValue =
+      Number(element.value.replace(/\s/g, "").replace(",", ".")) || 0;
+
+    const animate = (currentTime) => {
+      const progress = Math.min((currentTime - start) / duration, 1);
+
+      // плавность
+      const ease = 1 - Math.pow(1 - progress, 3);
+
+      const current = startValue + (target - startValue) * ease;
+
+      element.value = formatMoney(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        element.value = formatMoney(target);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
+  button.onclick = () => {
+    // Получаем значения
+    const okl = Number(get("okl").value);
+    const prem = Number(get("prem").value);
+
+    const payday = Number(get("payday").value);
+    const paynight = Number(get("paynight").value);
+    const payceleb = Number(get("payceleb").value);
+
+    const payhours = Number(get("payhours").value);
+
+    // Проверка
     if (!okl || !payhours) {
-      alert("Заполни обязательные поля!");
+      alert("Заполни оклад и стандартный рабочий час!");
+
       return;
     }
 
+    if (payhours <= 0) {
+      alert("Количество рабочих часов должно быть больше 0!");
 
-let paypart = okl*0.4;
-let premtax = prem *0.86;
-let pp = paypart+premtax;
-let hourspay = okl / payhours;
-let resday = hourspay * payday;
-let resnight = hourspay*paynight*1.5;
-let resceleb = hourspay*payceleb*2;
-let resall = resday+resnight+resceleb;
-let taxtwo = resall*0.02;
-let taxtwelve = ((resall-taxtwo)-156)*0.12;
-let resultpay =resall-taxtwo-taxtwelve;
-let rpwopp = resultpay-paypart
-let restax = (resall-resultpay)+(prem-premtax)
-let res = resall
+      return;
+    }
 
+    if (payday < 0 || paynight < 0 || payceleb < 0 || prem < 0 || okl < 0) {
+      alert("Значения не могут быть отрицательными!");
 
+      return;
+    }
 
-    partpay.value=pp.toFixed(2);
-    pay.value=rpwopp.toFixed(2);
-    fullpay.value=resultpay.toFixed(2);
-    fullpaytax.value=res.toFixed(2);
-    tax.value=restax.toFixed(2);
-  
-}}
+    /*
+    ==========================================
+    ТВОЯ ФОРМУЛА
+    ==========================================
+    */
+
+    // 40% оклада
+    const paypart = okl * 0.4;
+
+    // Премия после 14%
+    const premtax = prem * 0.86;
+
+    // Зачисление 15 числа
+    const pp = paypart + premtax;
+
+    // Стоимость одного рабочего часа
+    const hourspay = okl / payhours;
+
+    // Дневные часы
+    const resday = hourspay * payday;
+
+    // Ночные × 1.5
+    const resnight = hourspay * paynight * 1.5;
+
+    // Праздничные × 2
+    const resceleb = hourspay * payceleb * 2;
+
+    // Все часы
+    const resall = resday + resnight + resceleb;
+
+    // 2%
+    const taxtwo = resall * 0.02;
+
+    // 12%
+    const taxtwelve = (resall - taxtwo - 156) * 0.12;
+
+    // Итог
+    const resultpay = resall - taxtwo - taxtwelve;
+
+    // Выплата 1 числа
+    const rpwopp = resultpay - paypart;
+
+    // НДС
+    const restax = resall - resultpay + (prem - premtax);
+
+    // Общая сумма без НДС
+    const res = resall;
+
+    /*
+    ==========================================
+    ВЫВОД
+    ==========================================
+    */
+
+    animateValue(get("partpay"), pp);
+
+    animateValue(get("pay"), rpwopp);
+
+    animateValue(get("fullpay"), resultpay);
+
+    animateValue(get("fullpaytax"), res);
+
+    animateValue(get("tax"), restax);
+
+    // Анимация результата
+    const resultItems = document.querySelectorAll(".result-item");
+
+    resultItems.forEach((item, index) => {
+      item.style.animation = "none";
+
+      // reflow
+      void item.offsetWidth;
+
+      item.style.animation = `fadeUp 0.5s ${index * 0.08}s ease both`;
+    });
+  };
+
+  /*
+  ==========================================
+  ENTER = РАССЧИТАТЬ
+  ==========================================
+  */
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const active = document.activeElement;
+
+      if (active.tagName === "INPUT") {
+        button.click();
+      }
+    }
+  });
+};
