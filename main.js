@@ -113,15 +113,13 @@ const taxtwelve = (resall - taxtwo - 156) * 0.12;
 // Зарплата после налогов
 const salaryAfterTax = resall - taxtwo - taxtwelve;
 
-// Премия после НДС
-const bonusAfterTax = prem * 0.86;
 
 // ==========================================
 // ОБЩЕЕ ЗАЧИСЛЕНИЕ С ПРЕМИЕЙ
 // ==========================================
 
 // Общая сумма, которая должна быть зачислена
-const resultpay = salaryAfterTax + bonusAfterTax;
+const resultpay = salaryAfterTax + premtax;
 
 // Выплата 1 числа
 const rpwopp = resultpay - paypart;
@@ -134,7 +132,7 @@ const rpwopp = resultpay - paypart;
 const res = salaryAfterTax + prem;
 
 // НДС с премии
-const bonusNds = prem - bonusAfterTax;
+const bonusNds = prem - premtax;
 
 // Общий налог/НДС
 const restax = resall - salaryAfterTax + bonusNds;
