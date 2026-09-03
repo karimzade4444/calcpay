@@ -80,47 +80,64 @@ window.onload = () => {
     ==========================================
     */
 
-    // 40% оклада
-    const paypart = okl * 0.4;
+  // 40% оклада
+const paypart = okl * 0.4;
 
-    // Премия после 14%
-    const premtax = prem * 0.86;
+// Премия после НДС 14%
+const premtax = prem * 0.86;
 
-    // Зачисление 15 числа
-    const pp = paypart + premtax;
+// Зачисление 15 числа
+const pp = paypart + premtax;
 
-    // Стоимость одного рабочего часа
-    const hourspay = okl / payhours;
+// Стоимость одного рабочего часа
+const hourspay = okl / payhours;
 
-    // Дневные часы
-    const resday = hourspay * payday;
+// Дневные часы
+const resday = hourspay * payday;
 
-    // Ночные × 1.5
-    const resnight = hourspay * paynight * 1.5;
+// Ночные × 1.5
+const resnight = hourspay * paynight * 1.5;
 
-    // Праздничные × 2
-    const resceleb = hourspay * payceleb * 2;
+// Праздничные × 2
+const resceleb = hourspay * payceleb * 2;
 
-    // Все часы
-    const resall = resday + resnight + resceleb;
+// Все часы
+const resall = resday + resnight + resceleb;
 
-    // 2%
-    const taxtwo = resall * 0.02;
+// 2%
+const taxtwo = resall * 0.02;
 
-    // 12%
-    const taxtwelve = (resall - taxtwo - 156) * 0.12;
+// 12%
+const taxtwelve = (resall - taxtwo - 156) * 0.12;
 
-    // Итог
-    const resultpay = resall - taxtwo - taxtwelve;
+// Зарплата после налогов
+const salaryAfterTax = resall - taxtwo - taxtwelve;
 
-    // Выплата 1 числа
-    const rpwopp = resultpay - paypart;
+// Премия после НДС
+const bonusAfterTax = prem * 0.86;
 
-    // НДС
-    const restax = resall - resultpay + (prem - premtax);
+// ==========================================
+// ОБЩЕЕ ЗАЧИСЛЕНИЕ С ПРЕМИЕЙ
+// ==========================================
 
-    // Общая сумма без НДС
-    const res = resall;
+// Общая сумма, которая должна быть зачислена
+const resultpay = salaryAfterTax + bonusAfterTax;
+
+// Выплата 1 числа
+const rpwopp = resultpay - paypart;
+
+// ==========================================
+// ОБЩЕЕ БЕЗ НДС
+// ==========================================
+
+// Зарплата + полная премия до вычета НДС
+const res = salaryAfterTax + prem;
+
+// НДС с премии
+const bonusNds = prem - bonusAfterTax;
+
+// Общий налог/НДС
+const restax = resall - salaryAfterTax + bonusNds;
 
     /*
     ==========================================
